@@ -109,13 +109,31 @@ def draw():
         canvas.create_rectangle(tile.x, tile.y, tile.x + TILE_SIZE, tile.y + TILE_SIZE, fill = "lime green")
 
     if game_over:
+        canvas.delete("all")
         canvas.create_text(window_width / 2, window_height / 2, font = "Arial 20", text = f"Game over: {score}", fill = "white")
+        canvas.create_rectangle((window_width / 2) - TILE_SIZE * 2, (window_height / 2) + TILE_SIZE, (window_width / 2) + TILE_SIZE * 2, (window_height / 2) + TILE_SIZE * 3, fill = "green")
+        canvas.create_text(window_width / 2, (window_height / 2) + TILE_SIZE * 2, text = "Restart", font = "Arial 15")
+        canvas.create_rectangle((window_width / 2) - TILE_SIZE * 2, (window_height / 2) + TILE_SIZE * 3.5, (window_width / 2) + TILE_SIZE * 2, (window_height / 2) + TILE_SIZE * 5.5, fill = "red")
+        canvas.create_text(window_width / 2, (window_height / 2) + TILE_SIZE * 4.5, text = "Close", font = "Arial 15")
     else:
         canvas.create_text(30, 20, font = "Arial 10", text = f"score: {score}", fill = "white")
 
     window.after(100, draw) # 10 frames per second
 
+def click_button(e):
+    global game_over,score
+
+    if game_over:
+        if ((window_width / 2) - TILE_SIZE * 2) <= e.x <= ((window_height / 2) + TILE_SIZE * 2) and ((window_width / 2) + TILE_SIZE) <= e.y <= ((window_height / 2) + TILE_SIZE * 3):
+            # 待修正
+            print(e)
+
+        elif ((window_width / 2) - TILE_SIZE * 2) <= e.x <= ((window_height / 2) + TILE_SIZE * 2) and ((window_width / 2) + TILE_SIZE * 3.5) <= e.y <= ((window_height / 2) + TILE_SIZE * 5.5):
+            print(e)
+            window.destroy()
+
 draw()
 
 window.bind("<KeyRelease>", change_direction)
+window.bind("<Button-1>", click_button)
 window.mainloop()
