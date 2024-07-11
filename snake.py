@@ -111,10 +111,15 @@ def draw():
     if game_over:
         canvas.delete("all")
         canvas.create_text(window_width / 2, window_height / 2, font = "Arial 20", text = f"Game over: {score}", fill = "white")
-        canvas.create_rectangle((window_width / 2) - TILE_SIZE * 2, (window_height / 2) + TILE_SIZE, (window_width / 2) + TILE_SIZE * 2, (window_height / 2) + TILE_SIZE * 3, fill = "green")
-        canvas.create_text(window_width / 2, (window_height / 2) + TILE_SIZE * 2, text = "Restart", font = "Arial 15")
-        canvas.create_rectangle((window_width / 2) - TILE_SIZE * 2, (window_height / 2) + TILE_SIZE * 3.5, (window_width / 2) + TILE_SIZE * 2, (window_height / 2) + TILE_SIZE * 5.5, fill = "red")
-        canvas.create_text(window_width / 2, (window_height / 2) + TILE_SIZE * 4.5, text = "Close", font = "Arial 15")
+        #canvas.create_rectangle((window_width / 2) - TILE_SIZE * 2, (window_height / 2) + TILE_SIZE, (window_width / 2) + TILE_SIZE * 2, (window_height / 2) + TILE_SIZE * 3, fill = "green")
+        #canvas.create_text(window_width / 2, (window_height / 2) + TILE_SIZE * 2, text = "Restart", font = "Arial 15")
+        #canvas.create_rectangle((window_width / 2) - TILE_SIZE * 2, (window_height / 2) + TILE_SIZE * 3.5, (window_width / 2) + TILE_SIZE * 2, (window_height / 2) + TILE_SIZE * 5.5, fill = "red")
+        #canvas.create_text(window_width / 2, (window_height / 2) + TILE_SIZE * 4.5, text = "Close", font = "Arial 15")
+        btn_restart = tkinter.Button(canvas, text = "restart", bg = "white", fg = "black")
+        btn_restart.place(x = (window_width / 2) - TILE_SIZE * 2, y = (window_height / 2) + TILE_SIZE, width = TILE_SIZE * 4, height = TILE_SIZE * 2)
+        btn_close = tkinter.Button(canvas, text = "close", bg = "white", fg = "black")
+        btn_close.place(x = (window_width / 2) - TILE_SIZE * 2, y = (window_height / 2) + TILE_SIZE * 3.5, width = TILE_SIZE * 4, height = TILE_SIZE * 2)
+        window.update()
     else:
         canvas.create_text(30, 20, font = "Arial 10", text = f"score: {score}", fill = "white")
 
@@ -124,13 +129,7 @@ def click_button(e):
     global game_over,score
 
     if game_over:
-        if ((window_width / 2) - TILE_SIZE * 2) <= e.x <= ((window_height / 2) + TILE_SIZE * 2) and ((window_width / 2) + TILE_SIZE) <= e.y <= ((window_height / 2) + TILE_SIZE * 3):
-            # 待修正
-            print(e)
-
-        elif ((window_width / 2) - TILE_SIZE * 2) <= e.x <= ((window_height / 2) + TILE_SIZE * 2) and ((window_width / 2) + TILE_SIZE * 3.5) <= e.y <= ((window_height / 2) + TILE_SIZE * 5.5):
-            print(e)
-            window.destroy()
+        print(e)
 
 draw()
 
